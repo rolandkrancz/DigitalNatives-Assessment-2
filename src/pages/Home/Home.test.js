@@ -1,14 +1,22 @@
-import { render, screen } from "@testing-library/react";
-import { TEST_USERS } from "../../mocks/test-data";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { TEST_USERS_11 } from "../../mocks/test-data";
 import { server } from '../../mocks/server';
 import { rest } from 'msw';
-import Home from "./Home";
+import Home, { USERS_PER_PAGE } from "./Home";
 
 describe('Home page tests', () => {
-    test('Fetch and render all users.', async () => {
+    test('Fetch and render max number of users.', async () => {
         render(<Home  />);
-        const users = await screen.findAllByRole('listitem');
-        expect(users).toHaveLength(TEST_USERS.length);
+        const users = await screen.findAllByTestId('user-card');
+        expect(users).toHaveLength(USERS_PER_PAGE);
+    });
+
+    test('Pagination works', async () => {
+        render(<Home  />);
+        const nextButton = await screen.findByRole('button', {name: /next page/i});
+        fireEvent.click(nextButton);
+        const users = await screen.findAllByTestId('user-card');
+        expect(users).toHaveLength(TEST_USERS_11.length - USERS_PER_PAGE);
     });
 
     test('Render error message.', async () => {
