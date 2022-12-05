@@ -9,7 +9,8 @@ const UserList = ({users}) => {
                 ? <ul>
                     {users.map(user => {
                         return <li key={user.id}> 
-                                    <UserCard firstName={user.first_name}
+                                    <UserCard id={user.id}
+                                              firstName={user.first_name}
                                               lastName={user.last_name}
                                               createdAt={user.created_at} /> 
                                </li>

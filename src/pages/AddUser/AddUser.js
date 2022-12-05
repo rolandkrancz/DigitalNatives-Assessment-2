@@ -1,35 +1,17 @@
-import { response } from 'msw';
 import React, { useState } from 'react'
+import UserForm from '../../components/UserForm/UserForm';
 
 const AddUser = () => {
-    const defaultInputState = {
-        first_name: '',
-        last_name: '',
-        status: 'active'
-    };
 
-    const [inputs, setInputs] = useState(defaultInputState);
     const [firstNameError, setFirstNameError] = useState(null);
     const [lastNameError, setLastNameError] = useState(null);
 
-    const inputHandler = (e) => {
-        if(e.target.id === 'first-name') {
-            let newInputs = inputs;
-            newInputs.first_name = e.target.value;
-            setInputs(inputs);
-            setFirstNameError(null);
-        }
-        else if(e.target.id === 'last-name') {
-            let newInputs = inputs;
-            newInputs.last_name = e.target.value;
-            setInputs(inputs);
-            setLastNameError(null);
-        }
-    }
-
-    const submitHandler = async (e) => {
-        e.preventDefault();
-        const newUser = JSON.stringify(inputs);
+    const submitHandler = async (firstName, lastName) => {
+        const newUser = JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            status: "active"
+        });
 
         fetch('https://assessment-users-backend.herokuapp.com/users',
         {
@@ -37,19 +19,17 @@ const AddUser = () => {
             headers: {"Content-Type": "application/json"},
             body: newUser
         })
-        .then(response => {
-            if(response.ok) {
-                resetInputs();
-            } else {
-                return response.json()
-            }
-        })
-        .then(errorData => {
-                if(errorData['first_name']) {
-                    setFirstNameError(errorData['first_name']);
+        .then(response => response.json())
+        .then(responseData => {
+                if(responseData['first_name']) {
+                    setFirstNameError(responseData['first_name']);
+                } else {
+                    setFirstNameError(null);
                 }
-                if(errorData['last_name']) {
-                    setLastNameError(errorData['last_name']);
+                if(responseData['last_name']) {
+                    setLastNameError(responseData['last_name']);
+                } else {
+                    setLastNameError(null);
                 }
         })
         .catch(err => {
@@ -57,24 +37,10 @@ const AddUser = () => {
         });
     }
 
-    const resetInputs = () => {
-        setInputs(defaultInputState);
-    }
-
     return (
-        <form onSubmit={submitHandler}>
-            <label htmlFor='first-name'>First Name:</label>
-            {firstNameError && (<p data-testid='fn-error'>{firstNameError}</p>)}
-            <br/>
-            <input id='first-name' name='first-name' type='text' onChange={inputHandler} />
-            <br/>
-            <label htmlFor='last-name'>Last Name:</label>
-            {lastNameError && (<p data-testid='ln-error'>{lastNameError}</p>)}
-            <br/>
-            <input id='last-name' name='last-name' type='text' onChange={inputHandler} />
-            <br/>
-            <button type='submit'>Submit</button>
-        </form>
+        <UserForm   submitHandler={submitHandler} 
+                    firstNameError={firstNameError} 
+                    lastNameError={lastNameError} />
     )
 }
 

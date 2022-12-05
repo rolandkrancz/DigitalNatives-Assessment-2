@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Nav from './components/Nav/Nav';
 import AddUser from './pages/AddUser/AddUser';
+import EditUser from './pages/EditUser/EditUser';
 import Home from './pages/Home/Home';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
             <Nav />
             <Routes>
                 <Route path="/new" exact element={<AddUser />}></Route>
+                <Route path="/:uid" exact element={<EditUser />}></Route>
                 <Route path="/" exact element={<Home />}></Route>
             </Routes>
         </Router>
