@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './UserForm.scss'
 
 const UserForm = ({ submitHandler, firstNameError, lastNameError, firstNameDefault, lastNameDefault}) => {
     
@@ -19,14 +20,14 @@ const UserForm = ({ submitHandler, firstNameError, lastNameError, firstNameDefau
     }
     
     return (
-        <form onSubmit={onSubmit}>
+        <form className='user-form' onSubmit={onSubmit}>
             <label htmlFor='first-name'>First Name:</label>
-            {firstNameError && (<p data-testid='fn-error'>{firstNameError}</p>)}
+            {firstNameError && (<p className='error' data-testid='fn-error'>{firstNameError}</p>)}
             <br/>
             <input id='first-name' name='first-name' type='text' value={firstName} onChange={onFirstNameChange} />
             <br/>
             <label htmlFor='last-name'>Last Name:</label>
-            {lastNameError && (<p data-testid='ln-error'>{lastNameError}</p>)}
+            {lastNameError && (<p className='error' data-testid='ln-error'>{lastNameError}</p>)}
             <br/>
             <input id='last-name' name='last-name' type='text' value={lastName} onChange={onLastNameChange} />
             <br/>

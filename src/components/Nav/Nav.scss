@@ -1,0 +1,21 @@
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    border-bottom: 2px solid black;
+    width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    a {
+        box-shadow: rgba(149, 157, 165, 0.6) 0px 8px 24px;
+        border-radius: 0.2rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+
+        &:hover {
+            background-color: rgba(122, 183, 237)
+        }
+    }
+}

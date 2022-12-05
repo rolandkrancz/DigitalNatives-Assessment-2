@@ -1,0 +1,38 @@
+.wrapper {
+    border-radius: 0.2rem;
+    padding: 0;
+    margin: 1rem;
+    width: 20rem;
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    transition: 0.5s;
+    box-shadow: rgba(149, 157, 165, 0.6) 0px 8px 24px;
+    
+    &:hover {
+        scale: 1.03;
+        background-color: rgba(122, 183, 237);
+    }
+}
+
+.user-card {
+    padding: 1rem;
+}
+
+.lock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.locked {
+    background-color: lightgray;
+}
+
+@media screen and (max-width: 800px) {
+    .wrapper {
+        width: 80%;
+        overflow-x: hidden;
+    }
+}

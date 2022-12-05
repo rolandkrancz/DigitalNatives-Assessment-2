@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
 import UserList from '../../components/UserList/UserList';
+import './Home.scss'
 
 export const USERS_PER_PAGE = 10;
 
@@ -47,7 +48,7 @@ const Home = () => {
             console.log(err);
             setError('Could not update user.');
         });
-        
+
         fetchUsers();
     }
 
@@ -59,8 +60,7 @@ const Home = () => {
     }
 
     return (
-        <div>
-            <h2>Home</h2>
+        <div className='home-container'>
             {error 
                 ? <h3>Error: {error}</h3>
                 : isLoading
@@ -75,7 +75,9 @@ const Home = () => {
                     onPageChange={handlePageClick}
                     pageCount={Math.ceil(users.length / USERS_PER_PAGE)}
                     previousLabel="< previous"
-                    renderOnZeroPageCount={null}/>
+                    renderOnZeroPageCount={null}
+                    activeClassName={'active'}
+                    />
             </div>
         </div>
     )

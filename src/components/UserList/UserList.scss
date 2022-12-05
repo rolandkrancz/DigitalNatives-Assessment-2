@@ -1,0 +1,38 @@
+.user-list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.add-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    padding: 0;
+    margin: 1rem;
+    width: 20rem;
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    transition: 0.5s;
+    
+    &:hover {
+        scale: 1.03;
+        box-shadow: rgba(149, 157, 165, 0.6) 0px 8px 24px;
+        background-color: rgba(122, 183, 237)
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .user-list ul {
+        grid-template-columns: 1fr;
+    }
+}

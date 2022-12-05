@@ -11,14 +11,16 @@ import Home from './pages/Home/Home';
 
 const App = () => {
     return (
-        <Router>
-            <Nav />
-            <Routes>
-                <Route path="/new" exact element={<AddUser />}></Route>
-                <Route path="/:uid" exact element={<EditUser />}></Route>
-                <Route path="/" exact element={<Home />}></Route>
-            </Routes>
-        </Router>
+        <div className='container'>
+            <Router>
+                <Nav />
+                <Routes>
+                    <Route path="/new" exact element={<AddUser />}></Route>
+                    <Route path="/:uid" exact element={<EditUser />}></Route>
+                    <Route path="/" exact element={<Home />}></Route>
+                </Routes>
+            </Router>
+        </div>
     )
 }
 

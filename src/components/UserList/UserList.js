@@ -1,16 +1,16 @@
-import { response } from 'msw';
 import React from 'react'
 import UserCard from '../UserCard/UserCard';
+import './UserList.scss'
 
 const UserList = ({users, updateUserStatus}) => {
 
-    const onLockChange = (user, isLocked) => {
+    const onLockChange = (userId, isLocked) => {
         const status = isLocked ? 'locked' : 'active';
-        updateUserStatus(user.id, status);
+        updateUserStatus(userId, status);
     }
 
     return(
-        <div>
+        <div className='user-list'>
             {users
                 ? <ul>
                     {users.map(user => {
@@ -20,12 +20,8 @@ const UserList = ({users, updateUserStatus}) => {
                                               lastName={user.last_name}
                                               createdAt={user.created_at}
                                               isLocked={user.status === 'locked'}
+                                              onLockChange={onLockChange}
                                                />
-                                    <label htmlFor='isLocked'>Locked:</label>
-                                    <input name='isLocked' type={'checkbox'} checked={user.status === 'locked'} onChange={ e => {
-                                        onLockChange(user, e.target.checked);
-                                    }
-                                    } />
                                </li>
                         })}
                   </ul>
