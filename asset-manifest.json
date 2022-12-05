@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/DigitalNatives-Assessment-2/static/css/main.754ebb54.css",
+    "main.js": "/DigitalNatives-Assessment-2/static/js/main.d03abf16.js",
+    "index.html": "/DigitalNatives-Assessment-2/index.html",
+    "main.754ebb54.css.map": "/DigitalNatives-Assessment-2/static/css/main.754ebb54.css.map",
+    "main.d03abf16.js.map": "/DigitalNatives-Assessment-2/static/js/main.d03abf16.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.754ebb54.css",
+    "static/js/main.d03abf16.js"
+  ]
+}
