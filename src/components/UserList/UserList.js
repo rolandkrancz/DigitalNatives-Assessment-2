@@ -12,7 +12,11 @@ const UserList = ({users}) => {
                                     <UserCard id={user.id}
                                               firstName={user.first_name}
                                               lastName={user.last_name}
-                                              createdAt={user.created_at} /> 
+                                              createdAt={user.created_at}
+                                              isLocked={user.status === 'locked'}
+                                               />
+                                    <label htmlFor='isLocked'>Locked:</label>
+                                    <input name='isLocked' type={'checkbox'} checked={user.status === 'locked'} />
                                </li>
                         })}
                   </ul>
