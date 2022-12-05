@@ -15,9 +15,14 @@ nav {
         border-radius: 0.2rem;
         padding: 1rem;
         margin-bottom: 1rem;
+        background-color: variables.$color-secondary;
 
         &:hover {
             background-color: variables.$color-focus;
         }
+    }
+
+    .active {
+        background-color: variables.$color-primary;
     }
 }

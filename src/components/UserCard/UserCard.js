@@ -5,8 +5,9 @@ import {BsFillLockFill, BsFillUnlockFill} from 'react-icons/bs';
 
 const UserCard = ({id, firstName, lastName, createdAt, isLocked, onLockChange}) => {
 
+    const date = new Date(createdAt);
     const nameString = `${firstName} ${lastName}`;
-    const createdAtString = `Created at: ${createdAt}`;
+    const createdAtString = `Created at: ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
 
     const toggleLock = () => {
         onLockChange(id, !isLocked);
