@@ -12,27 +12,44 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect( () => {
-        const fetchUsers = async () => {
-            fetch('https://assessment-users-backend.herokuapp.com/users', 
-            {
-                headers: {"Content-Type": "application/json"}
-            })
-            .then(response => response.json())
-            .then(users => {
-                setUsers(users);
-                setCurrentUsers(users.slice(0, USERS_PER_PAGE));
-            })
-            .catch((err) => {
-                console.log(err);
-                setError('Could not fetch users.');
-            });
-        }
-
         setIsLoading(true);
         fetchUsers();
         setIsLoading(false);
     }, [])
 
+    const fetchUsers = async () => {
+       await fetch('https://assessment-users-backend.herokuapp.com/users', 
+        {
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(response => response.json())
+        .then(users => {
+            setUsers(users);
+            setCurrentUsers(users.slice(0, USERS_PER_PAGE));
+        })
+        .catch((err) => {
+            console.log(err);
+            setError('Could not fetch users.');
+        });
+    }
+
+    const updateUserStatus = async (id, newStatus) => {
+        await fetch(`https://assessment-users-backend.herokuapp.com/users/${id}`,
+        {
+            method: 'PUT',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                status: newStatus
+            }),
+        })
+        .then(response => console.log(response))
+        .catch(err => {
+            console.log(err);
+            setError('Could not update user.');
+        });
+        
+        fetchUsers();
+    }
 
     const handlePageClick = (event) => {
         const pageNumber = event.selected + 1;
@@ -48,7 +65,7 @@ const Home = () => {
                 ? <h3>Error: {error}</h3>
                 : isLoading
                     ? <div>Loading users, please wait..</div> 
-                    : <UserList users={currentUsers} />
+                    : <UserList users={currentUsers} updateUserStatus={updateUserStatus} />
             }
 
             <div className='pagination-container'>

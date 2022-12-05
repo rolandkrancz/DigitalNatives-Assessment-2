@@ -1,7 +1,13 @@
+import { response } from 'msw';
 import React from 'react'
 import UserCard from '../UserCard/UserCard';
 
-const UserList = ({users}) => {
+const UserList = ({users, updateUserStatus}) => {
+
+    const onLockChange = (user, isLocked) => {
+        const status = isLocked ? 'locked' : 'active';
+        updateUserStatus(user.id, status);
+    }
 
     return(
         <div>
@@ -16,7 +22,10 @@ const UserList = ({users}) => {
                                               isLocked={user.status === 'locked'}
                                                />
                                     <label htmlFor='isLocked'>Locked:</label>
-                                    <input name='isLocked' type={'checkbox'} checked={user.status === 'locked'} />
+                                    <input name='isLocked' type={'checkbox'} checked={user.status === 'locked'} onChange={ e => {
+                                        onLockChange(user, e.target.checked);
+                                    }
+                                    } />
                                </li>
                         })}
                   </ul>
