@@ -1,3 +1,5 @@
+@use '../../variables';
+
 nav {
     display: flex;
     justify-content: center;
@@ -9,13 +11,13 @@ nav {
     margin-bottom: 1rem;
 
     a {
-        box-shadow: rgba(149, 157, 165, 0.6) 0px 8px 24px;
+        box-shadow: variables.$shadow;
         border-radius: 0.2rem;
         padding: 1rem;
         margin-bottom: 1rem;
 
         &:hover {
-            background-color: rgba(122, 183, 237)
+            background-color: variables.$color-focus;
         }
     }
 }

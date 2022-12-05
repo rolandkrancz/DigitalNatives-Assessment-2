@@ -1,3 +1,5 @@
+@use '../../variables';
+
 .user-list {
     display: flex;
     justify-content: center;
@@ -19,15 +21,15 @@
     padding: 0;
     margin: 1rem;
     width: 20rem;
-    background-color: aliceblue;
+    background-color: variables.$color-primary;
     display: grid;
     grid-template-columns: 90% 10%;
     transition: 0.5s;
     
     &:hover {
         scale: 1.03;
-        box-shadow: rgba(149, 157, 165, 0.6) 0px 8px 24px;
-        background-color: rgba(122, 183, 237)
+        box-shadow: variables.$shadow;
+        background-color: variables.$color-focus
     }
 }
 

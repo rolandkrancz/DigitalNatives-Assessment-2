@@ -1,9 +1,11 @@
+@use '../../variables';
+
 .user-form {
     padding: 3rem;
     width: 40%;
     margin: auto;
-    background-color: aliceblue;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: variables.$color-primary;
+    box-shadow: variables.$shadow;
 
     label {
         padding: 0.3rem;
@@ -15,7 +17,7 @@
 
     .error {
         display: inline;
-        color: rgba(255, 0, 0, 0.644);
+        color: variables.$color-error;
         scale: 0.9;
     }
 }
