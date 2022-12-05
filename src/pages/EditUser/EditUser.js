@@ -37,7 +37,7 @@ const EditUser = () => {
 
         fetch(`https://assessment-users-backend.herokuapp.com/users/${uid}`,
         {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {"Content-Type": "application/json"},
             body: updatedUser
         })
