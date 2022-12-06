@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import UserForm from '../../components/UserForm/UserForm';
+import * as fetchRequests from '../../utils/fetchRequests';
 
 const EditUser = () => {
     const uid = useParams().uid;
@@ -11,10 +12,7 @@ const EditUser = () => {
 
     useEffect( () => {
         const fetchUser = async () => {
-            fetch(`https://assessment-users-backend.herokuapp.com/users/${uid}`, 
-            {
-                headers: {"Content-Type": "application/json"}
-            })
+            fetchRequests.getUserById(uid)
             .then(response => response.json())
             .then(user => {
                 setUser(user);
@@ -27,7 +25,7 @@ const EditUser = () => {
         setIsLoading(true);
         fetchUser();
         setIsLoading(false);
-    }, [])
+    }, [uid])
 
     const submitHandler = async (firstName, lastName) => {
         const updatedUser = JSON.stringify({
@@ -35,12 +33,7 @@ const EditUser = () => {
             last_name: lastName
         });
 
-        fetch(`https://assessment-users-backend.herokuapp.com/users/${uid}`,
-        {
-            method: 'PUT',
-            headers: {"Content-Type": "application/json"},
-            body: updatedUser
-        })
+        fetchRequests.updateUser(uid, updatedUser)
         .then(response => response.json())
         .then(responseData => {
                 if(responseData['first_name']) {

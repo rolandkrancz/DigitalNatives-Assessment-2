@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
 import UserList from '../../components/UserList/UserList';
+import * as fetchRequests from '../../utils/fetchRequests';
 import './Home.scss'
 
 export const USERS_PER_PAGE = 10;
@@ -18,11 +19,8 @@ const Home = () => {
         setIsLoading(false);
     }, [])
 
-    const fetchUsers = async () => {
-       await fetch('https://assessment-users-backend.herokuapp.com/users', 
-        {
-            headers: {"Content-Type": "application/json"}
-        })
+    const fetchUsers = () => {
+        fetchRequests.getAllUser()
         .then(response => response.json())
         .then(users => {
             setUsers(users);
@@ -34,19 +32,11 @@ const Home = () => {
         });
     }
 
-    const updateUserStatus = async (id, newStatus) => {
-        await fetch(`https://assessment-users-backend.herokuapp.com/users/${id}`,
-        {
-            method: 'PUT',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                status: newStatus
-            }),
-        })
-        .then(response => console.log(response))
+    const updateUserStatus = (id, newStatus) => {
+        fetchRequests.updateUserStatus(id, newStatus)
         .catch(err => {
             console.log(err);
-            setError('Could not update user.');
+            setError(`Could not update user ${id}'s status to ${newStatus}.`);
         });
 
         fetchUsers();

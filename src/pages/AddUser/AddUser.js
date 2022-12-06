@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import UserForm from '../../components/UserForm/UserForm';
+import * as fetchRequests from '../../utils/fetchRequests';
 
 const AddUser = () => {
 
@@ -13,12 +14,7 @@ const AddUser = () => {
             status: "active"
         });
 
-        fetch('https://assessment-users-backend.herokuapp.com/users',
-        {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: newUser
-        })
+        fetchRequests.createUser(newUser)
         .then(response => response.json())
         .then(responseData => {
                 if(responseData['first_name']) {
