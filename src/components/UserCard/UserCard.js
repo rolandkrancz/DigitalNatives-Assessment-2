@@ -15,7 +15,7 @@ const UserCard = ({id, firstName, lastName, createdAt, isLocked, onLockChange}) 
 
     return (
         <div className= {isLocked ? 'wrapper locked' : 'wrapper' }>
-            <Link to={`/${id}`}>
+            <Link to={`/edit/${id}`}>
             <div className='user-card' data-testid='user-card'>
                 <h3>
                     {isLocked 
