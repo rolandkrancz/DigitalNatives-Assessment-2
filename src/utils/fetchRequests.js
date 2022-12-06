@@ -11,8 +11,8 @@ export const getUserById = (id) => {
 
 export const updateUser = (id, user) => {
     return fetch(BACKEND_URL + id, { method: 'PUT',
-                                          headers: HEADERS,
-                                          body: user
+                                     headers: HEADERS,
+                                     body: user
     })
 }
 

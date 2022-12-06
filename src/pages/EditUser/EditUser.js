@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import UserForm from '../../components/UserForm/UserForm';
 import * as fetchRequests from '../../utils/fetchRequests';
 
@@ -9,6 +9,7 @@ const EditUser = () => {
     const [user, setUser] = useState(null);
     const [firstNameError, setFirstNameError] = useState(null);
     const [lastNameError, setLastNameError] = useState(null);
+    const nav = useNavigate();
 
     useEffect( () => {
         const fetchUser = async () => {
@@ -33,23 +34,25 @@ const EditUser = () => {
             last_name: lastName
         });
 
-        fetchRequests.updateUser(uid, updatedUser)
-        .then(response => response.json())
-        .then(responseData => {
-                if(responseData['first_name']) {
-                    setFirstNameError(responseData['first_name']);
-                } else {
-                    setFirstNameError(null);
-                }
-                if(responseData['last_name']) {
-                    setLastNameError(responseData['last_name']);
-                } else {
-                    setLastNameError(null);
-                }
-        })
-        .catch(err => {
+        try {
+            const response = await fetchRequests.updateUser(uid, updatedUser);
+            if(!response.ok){
+                const responseData = await response.json();
+                handleErrors(responseData);
+            } else {
+                console.log(`User ${uid} updated succesfully!`);
+                nav('/');
+            }
+        } catch (err) {
             console.log(err);
-        });
+        }
+    }
+
+    const handleErrors = (errorData) => {
+        const fnError = errorData['first_name'] ? errorData['first_name'] : null;
+        const lnError = errorData['last_name'] ? errorData['last_name'] : null;
+        setFirstNameError(fnError);
+        setLastNameError(lnError);
     }
 
     return (

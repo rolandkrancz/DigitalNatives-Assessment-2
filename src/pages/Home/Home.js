@@ -7,29 +7,31 @@ import './Home.scss'
 export const USERS_PER_PAGE = 10;
 
 const Home = () => {
-
     const [users, setUsers] = useState([]);
     const [currentUsers, setCurrentUsers] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect( () => {
-        setIsLoading(true);
         fetchUsers();
-        setIsLoading(false);
     }, [])
 
-    const fetchUsers = () => {
-        fetchRequests.getAllUser()
-        .then(response => response.json())
-        .then(users => {
-            setUsers(users);
-            setCurrentUsers(users.slice(0, USERS_PER_PAGE));
-        })
-        .catch((err) => {
+    const fetchUsers = async () => {
+        setIsLoading(true);
+        try {
+            const response = await fetchRequests.getAllUser()
+            const responseData = await response.json();
+            if(!response.ok) {
+                console.log(responseData);
+            } else {
+                setUsers(responseData);
+                setCurrentUsers(responseData.slice(0, USERS_PER_PAGE));
+            }
+        } catch(err) {
             console.log(err);
             setError('Could not fetch users.');
-        });
+        }
+        setIsLoading(false);
     }
 
     const updateUserStatus = (id, newStatus) => {
