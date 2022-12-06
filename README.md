@@ -1,5 +1,13 @@
 # JavaScript/Front-end Developer - User List
 
+This is my solution for Digital Natives seconds assessment, js-users. For this project I used React.
+
+Unfortunetly I don't have much experience with testing web apps and I underestimated how long it would take me. Because of this, most of the tests are skipped (done manually).
+
+[See it live](https://rolandkrancz.github.io/DigitalNatives-Assessment-2/)
+
+[First assessment](https://github.com/rolandkrancz/DigitalNatives-Assessment)
+
 ## Instructions
 
 - Fork this project.
