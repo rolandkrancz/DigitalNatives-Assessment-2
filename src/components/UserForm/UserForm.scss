@@ -20,4 +20,16 @@
         color: variables.$color-error;
         scale: 0.9;
     }
+
+    button {
+        border: 0;
+        box-shadow: variables.$shadow;
+        padding: 0.5rem;
+        background-color: variables.$color-secondary;
+        color: white;
+
+        &:hover {
+            background-color: variables.$color-focus;
+        }
+    }
 }
