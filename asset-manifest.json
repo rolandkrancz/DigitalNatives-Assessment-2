@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/DigitalNatives-Assessment-2/static/css/main.c5cd092f.css",
-    "main.js": "/DigitalNatives-Assessment-2/static/js/main.689c03cb.js",
+    "main.js": "/DigitalNatives-Assessment-2/static/js/main.337c4cd5.js",
     "index.html": "/DigitalNatives-Assessment-2/index.html",
     "main.c5cd092f.css.map": "/DigitalNatives-Assessment-2/static/css/main.c5cd092f.css.map",
-    "main.689c03cb.js.map": "/DigitalNatives-Assessment-2/static/js/main.689c03cb.js.map"
+    "main.337c4cd5.js.map": "/DigitalNatives-Assessment-2/static/js/main.337c4cd5.js.map"
   },
   "entrypoints": [
     "static/css/main.c5cd092f.css",
-    "static/js/main.689c03cb.js"
+    "static/js/main.337c4cd5.js"
   ]
 }
